@@ -1,0 +1,1298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SIVIZZModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente_Preorden">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="monto" Type="money" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="primerApellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="telefono" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="correo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="preorden_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Consola">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Intercambio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="montoRecibido" Type="money" Nullable="false" />
+          <Property Name="montoDado" Type="money" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="usuario_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Intercambio_Detalle">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="condicion" Type="bit" Nullable="false" />
+          <Property Name="tipo" Type="bit" Nullable="false" />
+          <Property Name="intercambio_id" Type="int" Nullable="false" />
+          <Property Name="producto_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notificacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="prioridad" Type="bit" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+          <Property Name="color" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="producto_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Oferta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="descuento" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="fechaLimite" Type="date" Nullable="false" />
+          <Property Name="producto_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OfertasEspecial">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="fechaInicio" Type="date" Nullable="false" />
+          <Property Name="fechaFin" Type="date" Nullable="false" />
+          <Property Name="global" Type="bit" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OfertasEspecial_Producto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="descuento" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="categoria_id" Type="int" Nullable="false" />
+          <Property Name="ofertasEspeciales_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Permisos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Preorden">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="fechaLanzamiento" Type="date" />
+          <Property Name="precio" Type="money" Nullable="false" />
+          <Property Name="montoInicial" Type="money" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+          <Property Name="producto_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="codigo" Type="int" Nullable="false" />
+          <Property Name="precio" Type="money" />
+          <Property Name="existencia" Type="int" Nullable="false" />
+          <Property Name="alerta_ext" Type="int" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+          <Property Name="imagen" Type="varbinary(max)" />
+          <Property Name="categoria_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rol_Permisos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="rol_id" Type="int" Nullable="false" />
+          <Property Name="permisos_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoPago">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="primerApellido" Type="varchar" MaxLength="50" />
+          <Property Name="segundoApellido" Type="varchar" MaxLength="50" />
+          <Property Name="nick" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="contrasenna" Type="varchar(max)" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+          <Property Name="rol_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="monto" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="total" Type="money" Nullable="false" />
+          <Property Name="usuario_id" Type="int" Nullable="false" />
+          <Property Name="tipoPago_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Venta_Detalle">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="monto" Type="money" Nullable="false" />
+          <Property Name="producto_id" Type="int" Nullable="false" />
+          <Property Name="venta_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Videojuego_Inventario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="existencia" Type="int" Nullable="false" />
+          <Property Name="condicion" Type="bit" Nullable="false" />
+          <Property Name="producto_id" Type="int" Nullable="false" />
+          <Property Name="consola_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="Cliente_Preorden_fk0">
+          <End Role="Preorden" Type="Self.Preorden" Multiplicity="1" />
+          <End Role="Cliente_Preorden" Type="Self.Cliente_Preorden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Preorden">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cliente_Preorden">
+              <PropertyRef Name="preorden_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Intercambio_Detalle_fk0">
+          <End Role="Intercambio" Type="Self.Intercambio" Multiplicity="1" />
+          <End Role="Intercambio_Detalle" Type="Self.Intercambio_Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Intercambio">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Intercambio_Detalle">
+              <PropertyRef Name="intercambio_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Intercambio_Detalle_fk1">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Intercambio_Detalle" Type="Self.Intercambio_Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Intercambio_Detalle">
+              <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Intercambio_fk0">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Intercambio" Type="Self.Intercambio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Intercambio">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Notificacion_fk0">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Notificacion" Type="Self.Notificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notificacion">
+              <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Oferta_fk0">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Oferta" Type="Self.Oferta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Oferta">
+              <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OfertasEspecial_Producto_fk0">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="OfertasEspecial_Producto" Type="Self.OfertasEspecial_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OfertasEspecial_Producto">
+              <PropertyRef Name="categoria_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OfertasEspecial_Producto_fk1">
+          <End Role="OfertasEspecial" Type="Self.OfertasEspecial" Multiplicity="1" />
+          <End Role="OfertasEspecial_Producto" Type="Self.OfertasEspecial_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OfertasEspecial">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OfertasEspecial_Producto">
+              <PropertyRef Name="ofertasEspeciales_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Preorden_fk0">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Preorden" Type="Self.Preorden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Preorden">
+              <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Producto_fk0">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="categoria_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Rol_Permisos_fk0">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Rol_Permisos" Type="Self.Rol_Permisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rol_Permisos">
+              <PropertyRef Name="rol_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Rol_Permisos_fk1">
+          <End Role="Permisos" Type="Self.Permisos" Multiplicity="1" />
+          <End Role="Rol_Permisos" Type="Self.Rol_Permisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permisos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rol_Permisos">
+              <PropertyRef Name="permisos_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Usuario_fk0">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="rol_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Venta_Detalle_fk0">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Venta_Detalle" Type="Self.Venta_Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Venta_Detalle">
+              <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Venta_Detalle_fk1">
+          <End Role="Venta" Type="Self.Venta" Multiplicity="1" />
+          <End Role="Venta_Detalle" Type="Self.Venta_Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Venta_Detalle">
+              <PropertyRef Name="venta_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Venta_fk0">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Venta_fk1">
+          <End Role="TipoPago" Type="Self.TipoPago" Multiplicity="1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPago">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="tipoPago_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Videojuego_Inventario_fk0">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Videojuego_Inventario" Type="Self.Videojuego_Inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Videojuego_Inventario">
+              <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Videojuego_Inventario_fk1">
+          <End Role="Consola" Type="Self.Consola" Multiplicity="1" />
+          <End Role="Videojuego_Inventario" Type="Self.Videojuego_Inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consola">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Videojuego_Inventario">
+              <PropertyRef Name="consola_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SIVIZZModelStoreContainer">
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente_Preorden" EntityType="Self.Cliente_Preorden" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Consola" EntityType="Self.Consola" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Intercambio" EntityType="Self.Intercambio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Intercambio_Detalle" EntityType="Self.Intercambio_Detalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notificacion" EntityType="Self.Notificacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Oferta" EntityType="Self.Oferta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OfertasEspecial" EntityType="Self.OfertasEspecial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OfertasEspecial_Producto" EntityType="Self.OfertasEspecial_Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permisos" EntityType="Self.Permisos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Preorden" EntityType="Self.Preorden" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol_Permisos" EntityType="Self.Rol_Permisos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoPago" EntityType="Self.TipoPago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Venta_Detalle" EntityType="Self.Venta_Detalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Videojuego_Inventario" EntityType="Self.Videojuego_Inventario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Cliente_Preorden_fk0" Association="Self.Cliente_Preorden_fk0">
+            <End Role="Preorden" EntitySet="Preorden" />
+            <End Role="Cliente_Preorden" EntitySet="Cliente_Preorden" />
+          </AssociationSet>
+          <AssociationSet Name="Intercambio_Detalle_fk0" Association="Self.Intercambio_Detalle_fk0">
+            <End Role="Intercambio" EntitySet="Intercambio" />
+            <End Role="Intercambio_Detalle" EntitySet="Intercambio_Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="Intercambio_Detalle_fk1" Association="Self.Intercambio_Detalle_fk1">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Intercambio_Detalle" EntitySet="Intercambio_Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="Intercambio_fk0" Association="Self.Intercambio_fk0">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Intercambio" EntitySet="Intercambio" />
+          </AssociationSet>
+          <AssociationSet Name="Notificacion_fk0" Association="Self.Notificacion_fk0">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Notificacion" EntitySet="Notificacion" />
+          </AssociationSet>
+          <AssociationSet Name="Oferta_fk0" Association="Self.Oferta_fk0">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Oferta" EntitySet="Oferta" />
+          </AssociationSet>
+          <AssociationSet Name="OfertasEspecial_Producto_fk0" Association="Self.OfertasEspecial_Producto_fk0">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="OfertasEspecial_Producto" EntitySet="OfertasEspecial_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="OfertasEspecial_Producto_fk1" Association="Self.OfertasEspecial_Producto_fk1">
+            <End Role="OfertasEspecial" EntitySet="OfertasEspecial" />
+            <End Role="OfertasEspecial_Producto" EntitySet="OfertasEspecial_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="Preorden_fk0" Association="Self.Preorden_fk0">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Preorden" EntitySet="Preorden" />
+          </AssociationSet>
+          <AssociationSet Name="Producto_fk0" Association="Self.Producto_fk0">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="Rol_Permisos_fk0" Association="Self.Rol_Permisos_fk0">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Rol_Permisos" EntitySet="Rol_Permisos" />
+          </AssociationSet>
+          <AssociationSet Name="Rol_Permisos_fk1" Association="Self.Rol_Permisos_fk1">
+            <End Role="Permisos" EntitySet="Permisos" />
+            <End Role="Rol_Permisos" EntitySet="Rol_Permisos" />
+          </AssociationSet>
+          <AssociationSet Name="Usuario_fk0" Association="Self.Usuario_fk0">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="Venta_Detalle_fk0" Association="Self.Venta_Detalle_fk0">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Venta_Detalle" EntitySet="Venta_Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="Venta_Detalle_fk1" Association="Self.Venta_Detalle_fk1">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="Venta_Detalle" EntitySet="Venta_Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="Venta_fk0" Association="Self.Venta_fk0">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="Venta_fk1" Association="Self.Venta_fk1">
+            <End Role="TipoPago" EntitySet="TipoPago" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="Videojuego_Inventario_fk0" Association="Self.Videojuego_Inventario_fk0">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Videojuego_Inventario" EntitySet="Videojuego_Inventario" />
+          </AssociationSet>
+          <AssociationSet Name="Videojuego_Inventario_fk1" Association="Self.Videojuego_Inventario_fk1">
+            <End Role="Consola" EntitySet="Consola" />
+            <End Role="Videojuego_Inventario" EntitySet="Videojuego_Inventario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SIVIZZModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="OfertasEspecial_Producto" Relationship="Self.OfertasEspecial_Producto_fk0" FromRole="Categoria" ToRole="OfertasEspecial_Producto" />
+          <NavigationProperty Name="Producto" Relationship="Self.Producto_fk0" FromRole="Categoria" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Cliente_Preorden">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="monto" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="primerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="preorden_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Preorden" Relationship="Self.Cliente_Preorden_fk0" FromRole="Cliente_Preorden" ToRole="Preorden" />
+        </EntityType>
+        <EntityType Name="Consola">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Videojuego_Inventario" Relationship="Self.Videojuego_Inventario_fk1" FromRole="Consola" ToRole="Videojuego_Inventario" />
+        </EntityType>
+        <EntityType Name="Intercambio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="montoRecibido" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="montoDado" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Intercambio_Detalle" Relationship="Self.Intercambio_Detalle_fk0" FromRole="Intercambio" ToRole="Intercambio_Detalle" />
+          <NavigationProperty Name="Usuario" Relationship="Self.Intercambio_fk0" FromRole="Intercambio" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Intercambio_Detalle">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="condicion" Type="Boolean" Nullable="false" />
+          <Property Name="tipo" Type="Boolean" Nullable="false" />
+          <Property Name="intercambio_id" Type="Int32" Nullable="false" />
+          <Property Name="producto_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Intercambio" Relationship="Self.Intercambio_Detalle_fk0" FromRole="Intercambio_Detalle" ToRole="Intercambio" />
+          <NavigationProperty Name="Producto" Relationship="Self.Intercambio_Detalle_fk1" FromRole="Intercambio_Detalle" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Notificacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="prioridad" Type="Boolean" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <Property Name="color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="producto_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="Self.Notificacion_fk0" FromRole="Notificacion" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Oferta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="descuento" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="fechaLimite" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="producto_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="Self.Oferta_fk0" FromRole="Oferta" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="OfertasEspecial">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="fechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaFin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="global" Type="Boolean" Nullable="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="OfertasEspecial_Producto" Relationship="Self.OfertasEspecial_Producto_fk1" FromRole="OfertasEspecial" ToRole="OfertasEspecial_Producto" />
+        </EntityType>
+        <EntityType Name="OfertasEspecial_Producto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="descuento" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="categoria_id" Type="Int32" Nullable="false" />
+          <Property Name="ofertasEspeciales_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Categoria" Relationship="Self.OfertasEspecial_Producto_fk0" FromRole="OfertasEspecial_Producto" ToRole="Categoria" />
+          <NavigationProperty Name="OfertasEspecial" Relationship="Self.OfertasEspecial_Producto_fk1" FromRole="OfertasEspecial_Producto" ToRole="OfertasEspecial" />
+        </EntityType>
+        <EntityType Name="Permisos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Rol_Permisos" Relationship="Self.Rol_Permisos_fk1" FromRole="Permisos" ToRole="Rol_Permisos" />
+        </EntityType>
+        <EntityType Name="Preorden">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="fechaLanzamiento" Type="DateTime" Precision="0" />
+          <Property Name="precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="montoInicial" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <Property Name="producto_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cliente_Preorden" Relationship="Self.Cliente_Preorden_fk0" FromRole="Preorden" ToRole="Cliente_Preorden" />
+          <NavigationProperty Name="Producto" Relationship="Self.Preorden_fk0" FromRole="Preorden" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="codigo" Type="Int32" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="existencia" Type="Int32" Nullable="false" />
+          <Property Name="alerta_ext" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="categoria_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Categoria" Relationship="Self.Producto_fk0" FromRole="Producto" ToRole="Categoria" />
+          <NavigationProperty Name="Intercambio_Detalle" Relationship="Self.Intercambio_Detalle_fk1" FromRole="Producto" ToRole="Intercambio_Detalle" />
+          <NavigationProperty Name="Notificacion" Relationship="Self.Notificacion_fk0" FromRole="Producto" ToRole="Notificacion" />
+          <NavigationProperty Name="Oferta" Relationship="Self.Oferta_fk0" FromRole="Producto" ToRole="Oferta" />
+          <NavigationProperty Name="Preorden" Relationship="Self.Preorden_fk0" FromRole="Producto" ToRole="Preorden" />
+          <NavigationProperty Name="Venta_Detalle" Relationship="Self.Venta_Detalle_fk0" FromRole="Producto" ToRole="Venta_Detalle" />
+          <NavigationProperty Name="Videojuego_Inventario" Relationship="Self.Videojuego_Inventario_fk0" FromRole="Producto" ToRole="Videojuego_Inventario" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Rol_Permisos" Relationship="Self.Rol_Permisos_fk0" FromRole="Rol" ToRole="Rol_Permisos" />
+          <NavigationProperty Name="Usuario" Relationship="Self.Usuario_fk0" FromRole="Rol" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Rol_Permisos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="rol_id" Type="Int32" Nullable="false" />
+          <Property Name="permisos_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Permisos" Relationship="Self.Rol_Permisos_fk1" FromRole="Rol_Permisos" ToRole="Permisos" />
+          <NavigationProperty Name="Rol" Relationship="Self.Rol_Permisos_fk0" FromRole="Rol_Permisos" ToRole="Rol" />
+        </EntityType>
+        <EntityType Name="TipoPago">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Venta" Relationship="Self.Venta_fk1" FromRole="TipoPago" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="primerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="segundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nick" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contrasenna" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <Property Name="rol_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Intercambio" Relationship="Self.Intercambio_fk0" FromRole="Usuario" ToRole="Intercambio" />
+          <NavigationProperty Name="Rol" Relationship="Self.Usuario_fk0" FromRole="Usuario" ToRole="Rol" />
+          <NavigationProperty Name="Venta" Relationship="Self.Venta_fk0" FromRole="Usuario" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="monto" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="total" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="usuario_id" Type="Int32" Nullable="false" />
+          <Property Name="tipoPago_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TipoPago" Relationship="Self.Venta_fk1" FromRole="Venta" ToRole="TipoPago" />
+          <NavigationProperty Name="Usuario" Relationship="Self.Venta_fk0" FromRole="Venta" ToRole="Usuario" />
+          <NavigationProperty Name="Venta_Detalle" Relationship="Self.Venta_Detalle_fk1" FromRole="Venta" ToRole="Venta_Detalle" />
+        </EntityType>
+        <EntityType Name="Venta_Detalle">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="monto" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="producto_id" Type="Int32" Nullable="false" />
+          <Property Name="venta_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="Self.Venta_Detalle_fk0" FromRole="Venta_Detalle" ToRole="Producto" />
+          <NavigationProperty Name="Venta" Relationship="Self.Venta_Detalle_fk1" FromRole="Venta_Detalle" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Videojuego_Inventario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="existencia" Type="Int32" Nullable="false" />
+          <Property Name="condicion" Type="Boolean" Nullable="false" />
+          <Property Name="producto_id" Type="Int32" Nullable="false" />
+          <Property Name="consola_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Consola" Relationship="Self.Videojuego_Inventario_fk1" FromRole="Videojuego_Inventario" ToRole="Consola" />
+          <NavigationProperty Name="Producto" Relationship="Self.Videojuego_Inventario_fk0" FromRole="Videojuego_Inventario" ToRole="Producto" />
+        </EntityType>
+        <Association Name="OfertasEspecial_Producto_fk0">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="OfertasEspecial_Producto" Type="Self.OfertasEspecial_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OfertasEspecial_Producto">
+              <PropertyRef Name="categoria_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Producto_fk0">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="categoria_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Cliente_Preorden_fk0">
+          <End Role="Preorden" Type="Self.Preorden" Multiplicity="1" />
+          <End Role="Cliente_Preorden" Type="Self.Cliente_Preorden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Preorden">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cliente_Preorden">
+              <PropertyRef Name="preorden_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Videojuego_Inventario_fk1">
+          <End Role="Consola" Type="Self.Consola" Multiplicity="1" />
+          <End Role="Videojuego_Inventario" Type="Self.Videojuego_Inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consola">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Videojuego_Inventario">
+              <PropertyRef Name="consola_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Intercambio_Detalle_fk0">
+          <End Role="Intercambio" Type="Self.Intercambio" Multiplicity="1" />
+          <End Role="Intercambio_Detalle" Type="Self.Intercambio_Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Intercambio">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Intercambio_Detalle">
+              <PropertyRef Name="intercambio_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Intercambio_fk0">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Intercambio" Type="Self.Intercambio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Intercambio">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Intercambio_Detalle_fk1">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Intercambio_Detalle" Type="Self.Intercambio_Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Intercambio_Detalle">
+              <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Notificacion_fk0">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Notificacion" Type="Self.Notificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notificacion">
+              <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Oferta_fk0">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Oferta" Type="Self.Oferta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Oferta">
+              <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OfertasEspecial_Producto_fk1">
+          <End Role="OfertasEspecial" Type="Self.OfertasEspecial" Multiplicity="1" />
+          <End Role="OfertasEspecial_Producto" Type="Self.OfertasEspecial_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OfertasEspecial">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OfertasEspecial_Producto">
+              <PropertyRef Name="ofertasEspeciales_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Rol_Permisos_fk1">
+          <End Role="Permisos" Type="Self.Permisos" Multiplicity="1" />
+          <End Role="Rol_Permisos" Type="Self.Rol_Permisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permisos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rol_Permisos">
+              <PropertyRef Name="permisos_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Preorden_fk0">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Preorden" Type="Self.Preorden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Preorden">
+              <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Venta_Detalle_fk0">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Venta_Detalle" Type="Self.Venta_Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Venta_Detalle">
+              <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Videojuego_Inventario_fk0">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Videojuego_Inventario" Type="Self.Videojuego_Inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Videojuego_Inventario">
+              <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Rol_Permisos_fk0">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Rol_Permisos" Type="Self.Rol_Permisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rol_Permisos">
+              <PropertyRef Name="rol_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Usuario_fk0">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="rol_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Venta_fk1">
+          <End Role="TipoPago" Type="Self.TipoPago" Multiplicity="1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPago">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="tipoPago_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Venta_fk0">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Venta_Detalle_fk1">
+          <End Role="Venta" Type="Self.Venta" Multiplicity="1" />
+          <End Role="Venta_Detalle" Type="Self.Venta_Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Venta_Detalle">
+              <PropertyRef Name="venta_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SIVIZZEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+          <EntitySet Name="Cliente_Preorden" EntityType="Self.Cliente_Preorden" />
+          <EntitySet Name="Consola" EntityType="Self.Consola" />
+          <EntitySet Name="Intercambio" EntityType="Self.Intercambio" />
+          <EntitySet Name="Intercambio_Detalle" EntityType="Self.Intercambio_Detalle" />
+          <EntitySet Name="Notificacion" EntityType="Self.Notificacion" />
+          <EntitySet Name="Oferta" EntityType="Self.Oferta" />
+          <EntitySet Name="OfertasEspecial" EntityType="Self.OfertasEspecial" />
+          <EntitySet Name="OfertasEspecial_Producto" EntityType="Self.OfertasEspecial_Producto" />
+          <EntitySet Name="Permisos" EntityType="Self.Permisos" />
+          <EntitySet Name="Preorden" EntityType="Self.Preorden" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" />
+          <EntitySet Name="Rol_Permisos" EntityType="Self.Rol_Permisos" />
+          <EntitySet Name="TipoPago" EntityType="Self.TipoPago" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <EntitySet Name="Venta" EntityType="Self.Venta" />
+          <EntitySet Name="Venta_Detalle" EntityType="Self.Venta_Detalle" />
+          <EntitySet Name="Videojuego_Inventario" EntityType="Self.Videojuego_Inventario" />
+          <AssociationSet Name="OfertasEspecial_Producto_fk0" Association="Self.OfertasEspecial_Producto_fk0">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="OfertasEspecial_Producto" EntitySet="OfertasEspecial_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="Producto_fk0" Association="Self.Producto_fk0">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="Cliente_Preorden_fk0" Association="Self.Cliente_Preorden_fk0">
+            <End Role="Preorden" EntitySet="Preorden" />
+            <End Role="Cliente_Preorden" EntitySet="Cliente_Preorden" />
+          </AssociationSet>
+          <AssociationSet Name="Videojuego_Inventario_fk1" Association="Self.Videojuego_Inventario_fk1">
+            <End Role="Consola" EntitySet="Consola" />
+            <End Role="Videojuego_Inventario" EntitySet="Videojuego_Inventario" />
+          </AssociationSet>
+          <AssociationSet Name="Intercambio_Detalle_fk0" Association="Self.Intercambio_Detalle_fk0">
+            <End Role="Intercambio" EntitySet="Intercambio" />
+            <End Role="Intercambio_Detalle" EntitySet="Intercambio_Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="Intercambio_fk0" Association="Self.Intercambio_fk0">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Intercambio" EntitySet="Intercambio" />
+          </AssociationSet>
+          <AssociationSet Name="Intercambio_Detalle_fk1" Association="Self.Intercambio_Detalle_fk1">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Intercambio_Detalle" EntitySet="Intercambio_Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="Notificacion_fk0" Association="Self.Notificacion_fk0">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Notificacion" EntitySet="Notificacion" />
+          </AssociationSet>
+          <AssociationSet Name="Oferta_fk0" Association="Self.Oferta_fk0">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Oferta" EntitySet="Oferta" />
+          </AssociationSet>
+          <AssociationSet Name="OfertasEspecial_Producto_fk1" Association="Self.OfertasEspecial_Producto_fk1">
+            <End Role="OfertasEspecial" EntitySet="OfertasEspecial" />
+            <End Role="OfertasEspecial_Producto" EntitySet="OfertasEspecial_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="Rol_Permisos_fk1" Association="Self.Rol_Permisos_fk1">
+            <End Role="Permisos" EntitySet="Permisos" />
+            <End Role="Rol_Permisos" EntitySet="Rol_Permisos" />
+          </AssociationSet>
+          <AssociationSet Name="Preorden_fk0" Association="Self.Preorden_fk0">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Preorden" EntitySet="Preorden" />
+          </AssociationSet>
+          <AssociationSet Name="Venta_Detalle_fk0" Association="Self.Venta_Detalle_fk0">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Venta_Detalle" EntitySet="Venta_Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="Videojuego_Inventario_fk0" Association="Self.Videojuego_Inventario_fk0">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Videojuego_Inventario" EntitySet="Videojuego_Inventario" />
+          </AssociationSet>
+          <AssociationSet Name="Rol_Permisos_fk0" Association="Self.Rol_Permisos_fk0">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Rol_Permisos" EntitySet="Rol_Permisos" />
+          </AssociationSet>
+          <AssociationSet Name="Usuario_fk0" Association="Self.Usuario_fk0">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="Venta_fk1" Association="Self.Venta_fk1">
+            <End Role="TipoPago" EntitySet="TipoPago" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="Venta_fk0" Association="Self.Venta_fk0">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="Venta_Detalle_fk1" Association="Self.Venta_Detalle_fk1">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="Venta_Detalle" EntitySet="Venta_Detalle" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SIVIZZModelStoreContainer" CdmEntityContainer="SIVIZZEntities">
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="SIVIZZModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente_Preorden">
+            <EntityTypeMapping TypeName="SIVIZZModel.Cliente_Preorden">
+              <MappingFragment StoreEntitySet="Cliente_Preorden">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="primerApellido" ColumnName="primerApellido" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="preorden_id" ColumnName="preorden_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Consola">
+            <EntityTypeMapping TypeName="SIVIZZModel.Consola">
+              <MappingFragment StoreEntitySet="Consola">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Intercambio">
+            <EntityTypeMapping TypeName="SIVIZZModel.Intercambio">
+              <MappingFragment StoreEntitySet="Intercambio">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="montoRecibido" ColumnName="montoRecibido" />
+                <ScalarProperty Name="montoDado" ColumnName="montoDado" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Intercambio_Detalle">
+            <EntityTypeMapping TypeName="SIVIZZModel.Intercambio_Detalle">
+              <MappingFragment StoreEntitySet="Intercambio_Detalle">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="condicion" ColumnName="condicion" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="intercambio_id" ColumnName="intercambio_id" />
+                <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notificacion">
+            <EntityTypeMapping TypeName="SIVIZZModel.Notificacion">
+              <MappingFragment StoreEntitySet="Notificacion">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="prioridad" ColumnName="prioridad" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Oferta">
+            <EntityTypeMapping TypeName="SIVIZZModel.Oferta">
+              <MappingFragment StoreEntitySet="Oferta">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descuento" ColumnName="descuento" />
+                <ScalarProperty Name="fechaLimite" ColumnName="fechaLimite" />
+                <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OfertasEspecial">
+            <EntityTypeMapping TypeName="SIVIZZModel.OfertasEspecial">
+              <MappingFragment StoreEntitySet="OfertasEspecial">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+                <ScalarProperty Name="global" ColumnName="global" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OfertasEspecial_Producto">
+            <EntityTypeMapping TypeName="SIVIZZModel.OfertasEspecial_Producto">
+              <MappingFragment StoreEntitySet="OfertasEspecial_Producto">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descuento" ColumnName="descuento" />
+                <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
+                <ScalarProperty Name="ofertasEspeciales_id" ColumnName="ofertasEspeciales_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permisos">
+            <EntityTypeMapping TypeName="SIVIZZModel.Permisos">
+              <MappingFragment StoreEntitySet="Permisos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Preorden">
+            <EntityTypeMapping TypeName="SIVIZZModel.Preorden">
+              <MappingFragment StoreEntitySet="Preorden">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fechaLanzamiento" ColumnName="fechaLanzamiento" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="montoInicial" ColumnName="montoInicial" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="SIVIZZModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="existencia" ColumnName="existencia" />
+                <ScalarProperty Name="alerta_ext" ColumnName="alerta_ext" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="SIVIZZModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol_Permisos">
+            <EntityTypeMapping TypeName="SIVIZZModel.Rol_Permisos">
+              <MappingFragment StoreEntitySet="Rol_Permisos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+                <ScalarProperty Name="permisos_id" ColumnName="permisos_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoPago">
+            <EntityTypeMapping TypeName="SIVIZZModel.TipoPago">
+              <MappingFragment StoreEntitySet="TipoPago">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="SIVIZZModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="primerApellido" ColumnName="primerApellido" />
+                <ScalarProperty Name="segundoApellido" ColumnName="segundoApellido" />
+                <ScalarProperty Name="nick" ColumnName="nick" />
+                <ScalarProperty Name="contrasenna" ColumnName="contrasenna" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Venta">
+            <EntityTypeMapping TypeName="SIVIZZModel.Venta">
+              <MappingFragment StoreEntitySet="Venta">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+                <ScalarProperty Name="tipoPago_id" ColumnName="tipoPago_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Venta_Detalle">
+            <EntityTypeMapping TypeName="SIVIZZModel.Venta_Detalle">
+              <MappingFragment StoreEntitySet="Venta_Detalle">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+                <ScalarProperty Name="venta_id" ColumnName="venta_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Videojuego_Inventario">
+            <EntityTypeMapping TypeName="SIVIZZModel.Videojuego_Inventario">
+              <MappingFragment StoreEntitySet="Videojuego_Inventario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="existencia" ColumnName="existencia" />
+                <ScalarProperty Name="condicion" ColumnName="condicion" />
+                <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+                <ScalarProperty Name="consola_id" ColumnName="consola_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

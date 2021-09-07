@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d034398d323d4abab3a8d9027a597153" Name="Diagram1">
+        <EntityTypeShape EntityType="SIVIZZModel.Categoria" Width="1.5" PointX="0.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIVIZZModel.Cliente_Preorden" Width="1.5" PointX="7.5" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIVIZZModel.Consola" Width="1.5" PointX="6" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIVIZZModel.Intercambio" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIVIZZModel.Intercambio_Detalle" Width="1.5" PointX="8.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIVIZZModel.Notificacion" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIVIZZModel.Oferta" Width="1.5" PointX="5.25" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIVIZZModel.OfertasEspecial" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIVIZZModel.OfertasEspecial_Producto" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIVIZZModel.Permisos" Width="1.5" PointX="1.5" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIVIZZModel.Preorden" Width="1.5" PointX="5.25" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIVIZZModel.Producto" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIVIZZModel.Rol" Width="1.5" PointX="1.5" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIVIZZModel.Rol_Permisos" Width="1.5" PointX="3.75" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIVIZZModel.TipoPago" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIVIZZModel.Usuario" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIVIZZModel.Venta" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIVIZZModel.Venta_Detalle" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIVIZZModel.Videojuego_Inventario" Width="1.5" PointX="8.25" PointY="10" IsExpanded="true" />
+        <AssociationConnector Association="SIVIZZModel.OfertasEspecial_Producto_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SIVIZZModel.Producto_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SIVIZZModel.Cliente_Preorden_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SIVIZZModel.Videojuego_Inventario_fk1" ManuallyRouted="false" />
+        <AssociationConnector Association="SIVIZZModel.Intercambio_Detalle_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SIVIZZModel.Intercambio_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SIVIZZModel.Intercambio_Detalle_fk1" ManuallyRouted="false" />
+        <AssociationConnector Association="SIVIZZModel.Notificacion_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SIVIZZModel.Oferta_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SIVIZZModel.OfertasEspecial_Producto_fk1" ManuallyRouted="false" />
+        <AssociationConnector Association="SIVIZZModel.Rol_Permisos_fk1" ManuallyRouted="false" />
+        <AssociationConnector Association="SIVIZZModel.Preorden_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SIVIZZModel.Venta_Detalle_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SIVIZZModel.Videojuego_Inventario_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SIVIZZModel.Rol_Permisos_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SIVIZZModel.Usuario_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SIVIZZModel.Venta_fk1" ManuallyRouted="false" />
+        <AssociationConnector Association="SIVIZZModel.Venta_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SIVIZZModel.Venta_Detalle_fk1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

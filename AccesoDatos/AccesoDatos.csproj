@@ -65,6 +65,7 @@
     <Compile Include="Model\Intercambio_Detalle.cs">
       <DependentUpon>SIVIZZModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Metadata.cs" />
     <Compile Include="Model\Notificacion.cs">
       <DependentUpon>SIVIZZModel.tt</DependentUpon>
     </Compile>
